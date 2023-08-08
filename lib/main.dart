@@ -15,6 +15,7 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
+        fontFamily: 'Quicksand',
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.amber)
             .copyWith(secondary: Colors.amber[700]),
       ),
