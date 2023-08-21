@@ -24,11 +24,14 @@ class Chart extends StatelessWidget {
         }
       }
 
+      print(weekDay);
+      print(DateFormat("'Data numérica:' E").format(weekDay));
+
       return {
         'day': DateFormat.E().format(weekDay)[0],
         'value': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get _weekTotalValue {

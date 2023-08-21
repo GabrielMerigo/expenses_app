@@ -1,3 +1,5 @@
+// ignore_for_file: use_function_type_syntax_for_parameters
+
 import 'dart:math';
 
 import 'package:expenses/components/chart.dart';
@@ -5,6 +7,7 @@ import 'package:expenses/components/transaction_form.dart';
 import 'package:expenses/components/transaction_list.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(const ExpensesApp());
 
@@ -14,6 +17,12 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [Locale('pt', 'BR')],
       home: MyHomePage(),
       theme: ThemeData(
         fontFamily: 'Quicksand',
