@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-  final Function removeTransaction;
+  final void Function(String) removeTransaction;
 
   const TransactionList(this.transactions, this.removeTransaction, {super.key});
 
