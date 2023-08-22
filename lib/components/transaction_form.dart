@@ -48,6 +48,9 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
+    final selectedDateFormatted =
+        DateFormat("dd/MM/yyyy").format(_selectedDate);
+
     return Card(
       elevation: 5,
       child: Padding(
@@ -72,8 +75,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   child: Text(
                     _selectedDate == null
                         ? 'Nenhuma data selecionada!'
-                        : DateFormat('Data Selecionada: dd/MM/yyyy')
-                            .format(_selectedDate),
+                        : 'Data Selecionada: $selectedDateFormatted',
                   ),
                 ),
                 TextButton(
