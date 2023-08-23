@@ -75,8 +75,17 @@ class _MyHomePageState extends State<MyHomePage> {
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (_) {
-        return TransactionForm(_addTransaction);
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Container(
+            height: MediaQuery.of(context).size.height / 3,
+            child: TransactionForm(_addTransaction),
+          ),
+        );
       },
     );
   }
@@ -85,7 +94,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Despesas Pessoais'),
+        title: Text(
+          'Despesas Pessoais',
+          style:
+              TextStyle(fontSize: 20 * MediaQuery.of(context).textScaleFactor),
+        ),
         actions: [
           IconButton(
               onPressed: () {

@@ -51,8 +51,8 @@ class _TransactionFormState extends State<TransactionForm> {
     final selectedDateFormatted =
         DateFormat("dd/MM/yyyy").format(_selectedDate);
 
-    return Card(
-      elevation: 5,
+    return Container(
+      height: MediaQuery.of(context).size.height / 2,
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(children: <Widget>[
