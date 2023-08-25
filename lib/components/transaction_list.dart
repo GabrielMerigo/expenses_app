@@ -12,20 +12,22 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: transactions.isEmpty
-          ? Column(
-              children: [
-                SizedBox(height: 20),
-                Text('Não há transações cadastradas'),
-                SizedBox(height: 30),
-                SizedBox(
-                  height: 150,
-                  child: Image.asset(
-                    'assets/images/waiting.png',
-                    fit: BoxFit.contain,
-                  ),
-                )
-              ],
-            )
+          ? LayoutBuilder(builder: (ctx, constrains) {
+              return Column(
+                children: [
+                  SizedBox(height: 20),
+                  Text('Não há transações cadastradas'),
+                  SizedBox(height: 30),
+                  SizedBox(
+                    height: constrains.maxHeight * 0.3,
+                    child: Image.asset(
+                      'assets/images/waiting.png',
+                      fit: BoxFit.contain,
+                    ),
+                  )
+                ],
+              );
+            })
           : ListView.builder(
               itemCount: transactions.length,
               itemBuilder: (ctx, index) {
@@ -56,12 +58,29 @@ class TransactionList extends StatelessWidget {
                     subtitle: Text(
                       DateFormat('d MMM y').format(tr.date),
                     ),
-                    trailing: GestureDetector(
-                      onTap: () {
-                        removeTransaction(tr.id);
-                      },
-                      child: Icon(Icons.delete, color: Colors.red),
-                    ),
+                    trailing: MediaQuery.of(context).size.width > 480
+                        ? TextButton(
+                            onPressed: () => removeTransaction(tr.id),
+                            child: Row(
+                              children: const [
+                                Icon(Icons.delete, color: Colors.red),
+                                Text(
+                                  'Excluir',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ],
+                            ),
+                          )
+                        : TextButton(
+                            style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                EdgeInsets.zero,
+                              ),
+                            ),
+                            onPressed: () => removeTransaction(tr.id),
+                            child: Icon(Icons.delete, color: Colors.red),
+                          ),
                   ),
                 );
               },

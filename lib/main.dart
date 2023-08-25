@@ -77,12 +77,15 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       isScrollControlled: true,
       builder: (_) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
+        return Container(
+          margin: EdgeInsets.only(
+            left: 8,
+            right: 8,
+            top: 8,
+            bottom: 8 + MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Container(
-            height: MediaQuery.of(context).size.height / 3,
+            height: MediaQuery.of(context).size.height * 0.5,
             child: TransactionForm(_addTransaction),
           ),
         );
@@ -93,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           'Despesas Pessoais',

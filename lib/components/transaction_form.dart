@@ -51,8 +51,7 @@ class _TransactionFormState extends State<TransactionForm> {
     final selectedDateFormatted =
         DateFormat("dd/MM/yyyy").format(_selectedDate);
 
-    return Container(
-      height: MediaQuery.of(context).size.height / 2,
+    return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(children: <Widget>[
