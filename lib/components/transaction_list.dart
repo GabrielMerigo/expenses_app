@@ -79,7 +79,7 @@ class TransactionList extends StatelessWidget {
                               ),
                             ),
                             onPressed: () => removeTransaction(tr.id),
-                            child: Icon(Icons.delete, color: Colors.red),
+                            child: const Icon(Icons.delete, color: Colors.red),
                           ),
                   ),
                 );

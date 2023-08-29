@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'package:expenses/components/transaction_form/widgets/select_date_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -66,26 +67,10 @@ class _TransactionFormState extends State<TransactionForm> {
             onSubmitted: (_) => _submitForm(),
             decoration: InputDecoration(labelText: 'Valor (R\$)'),
           ),
-          Container(
-            height: 70,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    _selectedDate == null
-                        ? 'Nenhuma data selecionada!'
-                        : 'Data Selecionada: $selectedDateFormatted',
-                  ),
-                ),
-                TextButton(
-                  onPressed: _showDatePicker,
-                  child: Text(
-                    'Selecionar Data',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                )
-              ],
-            ),
+          SelectDateButton(
+            selectedDateFormatted: selectedDateFormatted,
+            selectedDate: _selectedDate,
+            showDatePicker: _showDatePicker,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
