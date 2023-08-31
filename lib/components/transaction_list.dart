@@ -1,17 +1,43 @@
+import 'dart:math';
+
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class TransactionList extends StatelessWidget {
+class TransactionList extends StatefulWidget {
   final List<Transaction> transactions;
   final void Function(String) removeTransaction;
 
   const TransactionList(this.transactions, this.removeTransaction, {super.key});
 
   @override
+  State<TransactionList> createState() => _TransactionListState();
+}
+
+class _TransactionListState extends State<TransactionList> {
+  static const colors = [
+    Colors.red,
+    Colors.purple,
+    Colors.green,
+    Colors.blue,
+  ];
+
+  late Color _backgroundColor;
+
+  @override
+  void initState() {
+    super.initState();
+
+    int i = Random().nextInt(5);
+    _backgroundColor = colors[i];
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(_backgroundColor);
+
     return Expanded(
-      child: transactions.isEmpty
+      child: widget.transactions.isEmpty
           ? LayoutBuilder(builder: (ctx, constrains) {
               return Column(
                 children: [
@@ -29,9 +55,9 @@ class TransactionList extends StatelessWidget {
               );
             })
           : ListView.builder(
-              itemCount: transactions.length,
+              itemCount: widget.transactions.length,
               itemBuilder: (ctx, index) {
-                final tr = transactions[index];
+                final tr = widget.transactions[index];
 
                 return Card(
                   elevation: 5,
@@ -41,6 +67,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   child: ListTile(
                     leading: CircleAvatar(
+                      backgroundColor: _backgroundColor,
                       radius: 30,
                       child: Padding(
                         padding: const EdgeInsets.all(6),
@@ -60,7 +87,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     trailing: MediaQuery.of(context).size.width > 480
                         ? TextButton(
-                            onPressed: () => removeTransaction(tr.id),
+                            onPressed: () => widget.removeTransaction(tr.id),
                             child: Row(
                               children: const [
                                 Icon(Icons.delete, color: Colors.red),
@@ -78,7 +105,7 @@ class TransactionList extends StatelessWidget {
                                 EdgeInsets.zero,
                               ),
                             ),
-                            onPressed: () => removeTransaction(tr.id),
+                            onPressed: () => widget.removeTransaction(tr.id),
                             child: const Icon(Icons.delete, color: Colors.red),
                           ),
                   ),
